@@ -22,12 +22,14 @@ type Config struct {
 // CreateConfig creates the default plugin configuration.
 
 func CreateConfig() *Config {
-	return &Config{}
+	return &Config{
+		UserinfoURL:"foo"
+	}
 }
 
 // Example a plugin.
 
-type userInfo struct {
+type UserInfo struct {
 	next        http.Handler
 	name        string
 	userinfoURL string
@@ -37,7 +39,7 @@ type userInfo struct {
 
 func New(ctx context.Context, next http.Handler, config *Config, name string) (http.Handler, error) {
 
-	return &userInfo{
+	return &UserInfo{
 
 		next:        next,
 		name:        name,
@@ -47,7 +49,7 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 
 //curl  -H "Authorization:Bearer vsN-QlQv2zi3SHPk6fOJuSA4_6h14OPiwkk1rcp-xoY.d4m1wrUnPhaXGeS9l-Z_muhdi0nKSpUiDp2dQnDQaYM"  localhost:8082/test2
 
-func (u *userInfo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
+func (u *UserInfo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 
 	authorization := "no"
 
