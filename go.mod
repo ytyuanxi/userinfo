@@ -1,3 +1,3 @@
-module github.com/traefik/plugindemo
+module github.com/ytyuanxi/userinfo
 
 go 1.14
