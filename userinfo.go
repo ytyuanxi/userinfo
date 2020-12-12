@@ -68,11 +68,14 @@ func (u *userInfo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	}
 
 	claims := get(u.userinfoURL, authorization)
+	if claims == "error" {
+		return
+	}
 
 	m := make(map[string]string)
 	err := json.Unmarshal([]byte(claims), &m)
 	if err != nil {
-		fmt.Fprintln(rw, "error_description:The request could not be authorized")
+		fmt.Fprintln(rw, "eeeerror_description:The request could not be authorized")
 		return
 
 	}
@@ -93,14 +96,18 @@ func (u *userInfo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 func get(url string, token string) string {
 
 	// 超时时间：5秒
+
 	client := &http.Client{Timeout: 5 * time.Second}
+
 	request, err := http.NewRequest("GET", url, nil)
 
 	request.Header.Add("Authorization", token)
 
 	resp, err := client.Do(request)
+
 	if err != nil {
-		panic(err)
+		fmt.Println("error:userinfo!!!")
+		return "error"
 	}
 	defer resp.Body.Close()
 	var buffer [512]byte

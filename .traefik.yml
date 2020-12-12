@@ -14,4 +14,4 @@ summary: 'request userinfo for gridname '
 # This is mandatory,
 # and Traefik Pilot will try to execute the plugin with the configuration you provide as part of its startup validity tests.
 testData:
-    userinfoURL: localhost:8080
+    userinfoURL: foo
