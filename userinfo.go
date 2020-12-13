@@ -23,7 +23,7 @@ type Config struct {
 
 func CreateConfig() *Config {
 	return &Config{
-		UserinfoURL:"foo"
+		UserinfoURL: "foo",
 	}
 }
 
