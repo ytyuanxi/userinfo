@@ -47,7 +47,7 @@ func New(ctx context.Context, next http.Handler, config *Config, name string) (h
 	}, nil
 }
 
-//curl  -H "Authorization:Bearer vsN-QlQv2zi3SHPk6fOJuSA4_6h14OPiwkk1rcp-xoY.d4m1wrUnPhaXGeS9l-Z_muhdi0nKSpUiDp2dQnDQaYM"  localhost:8082/test2
+//curl  -H "Authorization:Bearer j8pI2oHcAS5ZOmsURIhhjAQk2-JUyrWKXLLzhuqGk_4.cxp5Cht-KDZWZZnPA2YwwH7AA9SIZ75efkg_x3-yKro"  localhost:8082/test2
 
 func (u *UserInfo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 
@@ -77,7 +77,7 @@ func (u *UserInfo) ServeHTTP(rw http.ResponseWriter, req *http.Request) {
 	m := make(map[string]string)
 	err := json.Unmarshal([]byte(claims), &m)
 	if err != nil {
-		fmt.Fprintln(rw, "eeeerror_description:The request could not be authorized")
+		fmt.Fprintln(rw, "error_description:The request could not be authorized")
 		return
 
 	}
